@@ -9,6 +9,7 @@
 
 // })
 
-chrome.runtime.onStartup.addListener(() => {
+chrome.windows.onCreated.addListener((window) => {
     chrome.tabs.create({ url: "Checklist_implementation.html" });
   });
+
