@@ -3,15 +3,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const myInput = document.getElementById("websiteDomain");
     const addButton = document.querySelector(".addDmn");
     const clearButton = document.querySelector(".clrDmn");
-
+    
     // Load and display the saved list
     updateWebsiteListDisplay();
-
+    
     // Add event listeners
     addButton.addEventListener("click", newElement);
     clearButton.addEventListener("click", clearMonitoringList);
+    
+    
 
     function newElement() {
+        // console.log("NEw ELEMENT")
         const inputValue = myInput.value.trim();
         if (inputValue === "") {
             alert("You must write something!");
@@ -49,6 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
             updateWebsiteListDisplay(); // Refresh the displayed list
         });
     }
+
+    
 });
 
 function saveInputedDomain(domain) {
@@ -109,3 +114,4 @@ function updateWebsiteListDisplay() {
         });
     });
 }
+// console.log("SCRIPT LOADED")
