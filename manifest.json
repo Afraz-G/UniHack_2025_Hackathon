@@ -1,9 +1,16 @@
 {
     "manifest_version": 3,
+<<<<<<< Updated upstream
     "name": "Hello Extensions",
     "version": "0.1.0",
     "description": "Base Level Extension",
     "permissions": ["tabs", "storage"],  
+=======
+    "name": "Bytey the Browser Buddy",
+    "version": "1.0",
+    "description": "A fun 8-bit Tamagotchi that keeps you productive!",
+    "permissions": ["tabs", "storage", "activeTab", "alarms", "scripting"],
+>>>>>>> Stashed changes
     "host_permissions": ["<all_urls>"],
     "background": {
       "service_worker": "background.js"
@@ -11,6 +18,7 @@
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
+<<<<<<< Updated upstream
         "js": ["contentScript.js"]
       }
     ],
@@ -25,4 +33,15 @@
         "resources":["Checklist_implementation.html"],
         "matches":["<all_urls>"]
       }]
+=======
+        "js": ["tamagotchiController.js"],
+        "css": ["tamagotchi.css"]
+      }
+    ],
+
+    "web_accessible_resources": [{
+      "matches": ["<all_urls>"],
+      "resources":["assets/laptopbyteyv1.png"]
+    }]
+>>>>>>> Stashed changes
   }

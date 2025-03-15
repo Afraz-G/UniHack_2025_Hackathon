@@ -1,3 +1,5 @@
+// Contains javascript for the checklist and the monitor list
+
 // Wait for the DOM to load
 document.addEventListener("DOMContentLoaded", () => {
     const myUL = document.getElementById("myUL");

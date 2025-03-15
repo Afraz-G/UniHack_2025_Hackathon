@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+<<<<<<< Updated upstream
     const addButton = document.getElementById("submitDomainButton");
     if (addButton) {
         addButton.addEventListener("click", saveInputedDomain);
@@ -9,6 +10,63 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteButton.addEventListener("click", clearMonitoringList);
     }
     updateWebsiteListDisplay();
+=======
+    const myUL = document.getElementById("monitoredWebsitesList");
+    const myInput = document.getElementById("websiteDomain");
+    const addButton = document.querySelector(".addDmn");
+    const clearButton = document.querySelector(".clrDmn");
+    
+    // Load and display the saved list
+    updateWebsiteListDisplay();
+    
+    // Add event listeners
+    addButton.addEventListener("click", newElement);
+    clearButton.addEventListener("click", clearMonitoringList);
+    
+    
+
+    function newElement() {
+        // console.log("NEw ELEMENT")
+        const inputValue = myInput.value.trim();
+        if (inputValue === "") {
+            alert("You must write something!");
+            return;
+        }
+
+        // Save the input value to storage
+        saveInputedDomain(inputValue);
+
+        // Create a new list item
+        const li = document.createElement("li");
+        li.textContent = inputValue;
+
+        // Add a close button to the new list item
+        const span = document.createElement("SPAN");
+        span.className = "close";
+        span.textContent = "\u00D7"; // "×" symbol
+        li.appendChild(span);
+
+        // Add the new item to the list
+        myUL.appendChild(li);
+
+        // Clear the input field
+        myInput.value = "";
+
+        // Add click event to the new close button
+        span.addEventListener("click", function () {
+            li.remove(); // Remove the item from the DOM
+            removeDomainFromList(inputValue); // Remove the item from storage
+        });
+    }
+
+    function clearMonitoringList() {
+        chrome.storage.sync.remove("monitorList", () => {
+            updateWebsiteListDisplay(); // Refresh the displayed list
+        });
+    }
+
+    
+>>>>>>> Stashed changes
 });
 
 function saveInputedDomain() {
@@ -45,9 +103,13 @@ function updateWebsiteListDisplay() {
         }
     });
 }
+<<<<<<< Updated upstream
 
 function clearMonitoringList() {
     chrome.storage.sync.remove("monitorList", () => {
         updateWebsiteListDisplay()
     })
 }
+=======
+// console.log("SCRIPT LOADED")
+>>>>>>> Stashed changes

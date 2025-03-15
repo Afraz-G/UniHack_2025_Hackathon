@@ -1,0 +1,61 @@
+:root {
+    --pixel-size: 6;
+}
+
+#TamagotchiContainer {
+    position: fixed; 
+    display: block;
+    width: 100%; 
+    height: 100%; 
+    top: 0;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0); 
+    z-index: 9999; 
+    cursor: pointer; 
+    pointer-events: none;
+}
+
+.Pixelart {
+    image-rendering: pixelated;
+}
+
+.Tamagotchi {
+    width: calc(32px * var(--pixel-size));
+    height: calc(32px * var(--pixel-size));
+    /* background: wheat; */
+    overflow: hidden;
+    position: relative;
+}
+
+.TamagotchiSpriteSheet {
+    animation: moveSpriteSheet 1s steps(2) infinite;
+    width: calc(64px * var(--pixel-size)); /* The pixel size here is equal to the pixel width of the entire row*/
+    position: absolute;
+}
+
+@keyframes moveSpriteSheet {
+    from {
+        transform: translate3d(0px, 0, 0)
+    }
+    to {
+        transform: translate3d(-100%, 0, 0)
+    }
+}
+
+.be_angry {
+    top: 0;
+}
+.be_annoyed {
+    top: calc(-32px * var(--pixel-size));
+}
+.be_sad {
+    top: calc(-64px * var(--pixel-size));
+}
+.be_neutral {
+    top: calc(-96px * var(--pixel-size));
+}
+.be_happy {
+    top: calc(-128px * var(--pixel-size));
+}
