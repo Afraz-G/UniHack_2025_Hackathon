@@ -1,128 +1,125 @@
-<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            margin: 0;
-            min-width: 250px;
+            background-image: url('pinkbg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
         }
-
         * {
             box-sizing: border-box;
         }
-
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 1000px; /* Increased width of the container */
+            flex-grow: 1;
+        }
         ul {
             margin: 0;
             padding: 0;
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            max-height: 500px;
+            overflow-y: auto;
         }
-
         ul li {
             cursor: pointer;
             position: relative;
-            padding: 12px 8px 12px 40px;
+            padding: 25px 20px 25px 60px; /* Wider padding */
             list-style-type: none;
-            background: #eee;
-            font-size: 18px;
+            background: rgba(238, 238, 238, 0.7);
+            font-size: 22px;
             transition: 0.2s;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
             user-select: none;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            width: 100%; /* Make each item span the full width */
         }
-
         ul li:nth-child(odd) {
-            background: #f9f9f9;
+            background: rgba(249, 249, 249, 0.7);
         }
-
         ul li:hover {
-            background: #ddd;
+            background: rgba(221, 221, 221, 0.7);
         }
-
         ul li.checked {
-            background: #888;
+            background: rgba(136, 136, 136, 0.7);
             color: #fff;
             text-decoration: line-through;
         }
-
         ul li.checked::before {
             content: '';
             position: absolute;
             border-color: #fff;
             border-style: solid;
             border-width: 0 2px 2px 0;
-            top: 10px;
-            left: 16px;
+            top: 14px;
+            left: 22px;
             transform: rotate(45deg);
-            height: 15px;
-            width: 7px;
+            height: 20px;
+            width: 10px;
         }
-
         .close {
             position: absolute;
-            right: 0;
-            top: 0;
-            padding: 12px 16px 12px 16px;
+            right: 15px;
+            top: 10px;
+            padding: 18px 22px;
         }
-
         .close:hover {
             background-color: #f44336;
             color: white;
         }
-
-        .header {
-            background-color: #f44336;
-            padding: 30px 40px;
-            color: white;
-            text-align: center;
+        .input-container {
+            background-color: #f9c2be;
+            padding: 25px;
+            width: 100%;
+            max-width: 1000px; /* Wider input container */
+            display: flex;
+            border-radius: 30px;
+            gap: 20px;
         }
-
-        .header:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
         input {
-            margin: 0;
+            flex: 1;
+            padding: 20px;
             border: none;
-            border-radius: 0;
-            width: 75%;
-            padding: 10px;
-            float: left;
-            font-size: 16px;
+            font-size: 20px;
+            width: 100%; /* Make input field span the full width */
         }
-
         .addBtn {
-            padding: 10px;
-            width: 25%;
+            padding: 20px;
             background: #d9d9d9;
             color: #555;
-            float: left;
             text-align: center;
-            font-size: 16px;
+            font-size: 20px;
             cursor: pointer;
             transition: 0.3s;
-            border-radius: 0;
+            width: 200px; /* Make button wider */
         }
-
         .addBtn:hover {
             background-color: #bbb;
         }
     </style>
 </head>
 <body>
-    <div id="myDIV" class="header">
-        <h2 style="margin:5px">My To Do List</h2>
+    <div class="container">
+        <ul id="myUL"></ul>
+    </div>
+    
+    <div class="input-container">
         <input type="text" id="myInput" placeholder="Title...">
         <span class="addBtn">Add</span>
     </div>
-
-    <ul id="myUL">
-        
-    </ul>
-
-    <!-- Reference to the external JavaScript file -->
+    
     <script src="script.js"></script>
 </body>
 </html>
