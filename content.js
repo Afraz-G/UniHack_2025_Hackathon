@@ -7,23 +7,23 @@ document.body.appendChild(bytey);
 // Style Bytey
 let byteyStyle = document.createElement("style");
 byteyStyle.innerHTML = `
-    #bytey {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 100px;
-        height: 100px;
-        z-index: 9999;
-    }
-    #bytey img {
-        width: 100%;
-        height: auto;
-        animation: blink 1s infinite alternate;
-    }
-    @keyframes blink {
-        0% { opacity: 1; }
-        100% { opacity: 0.8; }
-    }
+    #bytey {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 100px;
+        height: 100px;
+        z-index: 9999;
+    }
+    #bytey img {
+        width: 100%;
+        height: auto;
+        animation: blink 1s infinite alternate;
+    }
+    @keyframes blink {
+        0% { opacity: 1; }
+        100% { opacity: 0.8; }
+    }
 `;
 document.head.appendChild(byteyStyle);
 
