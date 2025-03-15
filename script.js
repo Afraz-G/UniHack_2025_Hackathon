@@ -1,61 +1,103 @@
 // Wait for the DOM to load
 document.addEventListener("DOMContentLoaded", () => {
-    // Create a "close" button and append it to each list item
-    const myNodelist = document.getElementsByTagName("LI");
-    for (let i = 0; i < myNodelist.length; i++) {
-        const span = document.createElement("SPAN");
-        const txt = document.createTextNode("\u00D7"); // "×" symbol
-        span.className = "close";
-        span.appendChild(txt);
-        myNodelist[i].appendChild(span);
-    }
-
-    // Click on a close button to hide the current list item
-    const closeButtons = document.getElementsByClassName("close");
-    for (let i = 0; i < closeButtons.length; i++) {
-        closeButtons[i].addEventListener("click", function () {
-            const div = this.parentElement;
-            div.style.display = "none";
-        });
-    }
-
-    // Add a "checked" symbol when clicking on a list item
-    const list = document.querySelector("ul");
-    list.addEventListener("click", function (ev) {
-        if (ev.target.tagName === "LI") {
-            ev.target.classList.toggle("checked");
-        }
-    });
-
-    // Add a new list item when clicking on the "Add" button
+    const myUL = document.getElementById("myUL");
     const addButton = document.querySelector(".addBtn");
+    const myInput = document.getElementById("myInput");
+
+    // Load saved checklist items from storage
+    loadChecklist();
+
+    // Add event listener to the "Add" button
     addButton.addEventListener("click", newElement);
 
     // Function to create a new list item
     function newElement() {
-        const li = document.createElement("li");
-        const inputValue = document.getElementById("myInput").value;
-        const textNode = document.createTextNode(inputValue);
-        li.appendChild(textNode);
-
+        const inputValue = myInput.value.trim();
         if (inputValue === "") {
             alert("You must write something!");
-        } else {
-            document.getElementById("myUL").appendChild(li);
+            return;
         }
-        document.getElementById("myInput").value = "";
+
+        // Create a new list item
+        const li = document.createElement("li");
+        li.textContent = inputValue;
 
         // Add a close button to the new list item
         const span = document.createElement("SPAN");
-        const txt = document.createTextNode("\u00D7"); // "×" symbol
         span.className = "close";
-        span.appendChild(txt);
+        span.textContent = "\u00D7"; // "×" symbol
         li.appendChild(span);
+
+        // Add the new item to the list
+        myUL.appendChild(li);
+
+        // Clear the input field
+        myInput.value = "";
+
+        // Save the updated checklist to storage
+        saveChecklist();
 
         // Add click event to the new close button
         span.addEventListener("click", function () {
-            const div = this.parentElement;
-            div.style.display = "none";
+            li.remove(); // Remove the item from the DOM
+            saveChecklist(); // Save the updated checklist to storage
+        });
+    }
+
+    // Add a "checked" symbol when clicking on a list item
+    myUL.addEventListener("click", function (ev) {
+        if (ev.target.tagName === "LI") {
+            ev.target.classList.toggle("checked");
+            saveChecklist(); // Save the updated checklist to storage
+        }
+    });
+
+    // Function to save the checklist to chrome.storage.local
+    function saveChecklist() {
+        const items = [];
+        const listItems = myUL.querySelectorAll("li");
+
+        listItems.forEach((item) => {
+            items.push({
+                text: item.textContent.replace("\u00D7", "").trim(), // Remove the "×" symbol
+                checked: item.classList.contains("checked")
+            });
+        });
+
+        // Save the items to chrome.storage.local
+        chrome.storage.local.set({ checklist: items }, () => {
+            console.log("Checklist saved:", items);
+        });
+    }
+
+    // Function to load the checklist from chrome.storage.local
+    function loadChecklist() {
+        chrome.storage.local.get("checklist", (result) => {
+            const items = result.checklist || [];
+
+            items.forEach((item) => {
+                const li = document.createElement("li");
+                li.textContent = item.text;
+
+                if (item.checked) {
+                    li.classList.add("checked");
+                }
+
+                // Add a close button to the list item
+                const span = document.createElement("SPAN");
+                span.className = "close";
+                span.textContent = "\u00D7"; // "×" symbol
+                li.appendChild(span);
+
+                // Add the item to the list
+                myUL.appendChild(li);
+
+                // Add click event to the close button
+                span.addEventListener("click", function () {
+                    li.remove(); // Remove the item from the DOM
+                    saveChecklist(); // Save the updated checklist to storage
+                });
+            });
         });
     }
 });
