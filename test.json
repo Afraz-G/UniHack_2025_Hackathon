@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "Hello Extensions",
+    "version": "0.1.0",
+    "description": "Base Level Extension",
+    "permissions": ["tabs", "storage"],  
+    "host_permissions": ["<all_urls>"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["contentScript.js"]
+      }
+    ],
+    "action": {
+      "default_popup": "hello.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+      },
+      "permissions": ["tabs", "storage"],
+      "web_accessible_resources" : [{
+        "resources":["Checklist_implementation.html"],
+        "matches":["<all_urls>"]
+      }]
+  }

@@ -1,0 +1,19 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    background-color: black;
+    color: limegreen;
+    padding: 20px;
+}
+
+button {
+    background: limegreen;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: yellow;
+}
