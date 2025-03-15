@@ -1,22 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-    const addButton = document.getElementById("submitDomainButton");
-    if (addButton) {
-        addButton.addEventListener("click", saveInputedDomain);
-
     const myUL = document.getElementById("monitoredWebsitesList");
     const myInput = document.getElementById("websiteDomain");
     const addButton = document.querySelector(".addDmn");
     const clearButton = document.querySelector(".clrDmn");
-
+    
     // Load and display the saved list
     updateWebsiteListDisplay();
-
+    
     // Add event listeners
     addButton.addEventListener("click", newElement);
     clearButton.addEventListener("click", clearMonitoringList);
+    
+    
 
     function newElement() {
+        // console.log("NEw ELEMENT")
         const inputValue = myInput.value.trim();
         if (inputValue === "") {
             alert("You must write something!");
@@ -47,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
             li.remove(); // Remove the item from the DOM
             removeDomainFromList(inputValue); // Remove the item from storage
         });
-
     }
 
     function clearMonitoringList() {
@@ -56,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    
 });
 
 function saveInputedDomain(domain) {
@@ -108,21 +106,6 @@ function updateWebsiteListDisplay() {
             // Add the list item to the DOM
             listElement.appendChild(liElement);
 
-            // TODO: Remove items to deny list.
-        }
-    });
-}
-
-
-function clearMonitoringList() {
-    chrome.storage.sync.remove("monitorList", () => {
-        updateWebsiteListDisplay()
-    })
-}
-
-// console.log("SCRIPT LOADED")
-
-
             // Add click event to the close button
             span.addEventListener("click", function () {
                 liElement.remove(); // Remove the item from the DOM
@@ -131,4 +114,4 @@ function clearMonitoringList() {
         });
     });
 }
-
+// console.log("SCRIPT LOADED")
