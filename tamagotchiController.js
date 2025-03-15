@@ -4,6 +4,8 @@
 // Second Bug: On some websites like the website to look at documentation for manifest.json, for some reason the sprites is croped
 // incorrectly, causing a double (first and next sprite sheet rows).
 
+
+
 const enableTamagotchi = async () => {
     chrome.storage.sync.get("monitorList", (data) => {
         const monitorList = data.monitorList || [];
@@ -15,6 +17,7 @@ const enableTamagotchi = async () => {
                 console.log("This is a BAD website") // Replace with what to do depending on website
                 matchFound = true;
                 showTamagotchi();
+                getChecklistData();
 
                 // TESTING ONLY: Call the function to start the cycle
                 cycleTamagotchiClasses();    
@@ -24,6 +27,16 @@ const enableTamagotchi = async () => {
         if (!matchFound) {removeTamagotchi();}
     });
     
+}
+
+function getChecklistData(){
+    chrome.storage.local.get(['checklist'], function(result){
+        if (result.checklist) {
+            console.log('Checklist data received:', result.checklist);
+        } else {
+            console.log('No checklist data found in chrome.storage.local');
+        }
+    });
 }
 
 function showTamagotchi() {
