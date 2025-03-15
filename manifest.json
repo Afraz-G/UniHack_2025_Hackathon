@@ -1,9 +1,11 @@
 { 
     "manifest_version": 3,
+
     "name": "Bytey the Browser Buddy",
     "version": "1.0",
     "description": "A fun 8-bit Tamagotchi that keeps you productive!",
-    "permissions": ["tabs", "storage", "activeTab", "alarms"],
+    "permissions": ["tabs", "storage", "activeTab", "alarms", "scripting"],
+
     "host_permissions": ["<all_urls>"],
     "action": {
       "default_popup": "popup.html",
@@ -20,7 +22,19 @@
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
-        "js": ["content.js"]
+        "js": ["contentScript.js", "tamagotchiController.js"],
+        "css": ["tamagotchi.css"]
       }
-    ]
+    ],
+    "action": {
+      "default_popup": "hello.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+      },
+      "permissions": ["tabs", "storage"],
+      "web_accessible_resources" : [{
+        "resources":["Checklist_implementation.html", "assets/laptopbyteyv1.png"],
+        "matches":["<all_urls>"]
+      }]
   }
