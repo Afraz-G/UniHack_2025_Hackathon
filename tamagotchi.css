@@ -22,16 +22,16 @@
 }
 
 .Tamagotchi {
-    width: calc(32px * var(--pixel-size));
-    height: calc(32px * var(--pixel-size));
+    width: calc(32px * var(--pixel-size)) !important;
+    height: calc(32px * var(--pixel-size)) !important;
     /* background: wheat; */
-    overflow: hidden;
+    overflow: hidden !important;
     position: relative;
 }
 
 .TamagotchiSpriteSheet {
     animation: moveSpriteSheet 1s steps(2) infinite;
-    width: calc(64px * var(--pixel-size)); /* The pixel size here is equal to the pixel width of the entire row*/
+    width: calc(64px * var(--pixel-size)) !important; /*The pixel size here is equal to the pixel width of the entire row*/
     position: absolute;
 }
 
