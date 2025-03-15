@@ -16,5 +16,13 @@
     ],
     "action": {
       "default_popup": "hello.html"
-    }
+    },
+    "background": {
+        "service_worker": "background.js"
+      },
+      "permissions": ["tabs", "storage"],
+      "web_accessible_resources" : [{
+        "resources":["Checklist_implementation.html"],
+        "matches":["<all_urls>"]
+      }]
   }

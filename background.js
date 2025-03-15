@@ -1,3 +1,4 @@
+
 // THIS IS SYNTAX FOR LISTENING TO  THE WEBSITES TAB
 
 // chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
@@ -7,3 +8,8 @@
 //     // }
 
 // })
+
+chrome.runtime.onStartup.addListener(() => {
+    chrome.tabs.create({ url: "Checklist_implementation.html" });
+  });
+
