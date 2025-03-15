@@ -1,3 +1,3 @@
 chrome.runtime.onStartup.addListener(() => {
-    chrome.tabs.create({ url: "https://theuselessweb.com/" });
+    chrome.tabs.create({ url: "Checklist_implementation.html" });
   });
