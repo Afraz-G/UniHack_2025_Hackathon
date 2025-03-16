@@ -231,11 +231,8 @@ const positions = [
     { top: 250, left: 350 },
     { top: 350, left: 500 },
     { top: 450, left: 650 },
-    { top: 550, left: 800 },
-    { top: 650, left: 950 },
-    { top: 750, left: 400 },
-    { top: 850, left: 600 },
-    { top: 950, left: 300 }
+    { top: 450, left: 850 },
+    { top: 250, left: 450 },
 ];
 
 // Function to move the container to a specific position
