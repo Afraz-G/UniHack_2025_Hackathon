@@ -26,11 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Create a new list item
         const li = document.createElement("li");
-        li.textContent = inputValue;
+        li.className = "listItem";
 
         // Add a close button to the new list item
         const span = document.createElement("SPAN");
         span.className = "close";
+        span.classList = " listItemButton"
         span.textContent = "\u00D7"; // "×" symbol
         li.appendChild(span);
 
@@ -96,14 +97,18 @@ function updateWebsiteListDisplay() {
         monitorList.forEach((domain) => {
             const liElement = document.createElement("li");
             liElement.textContent = domain;
-
+            liElement.className = "listItem";
+            
             // Add a close button to the list item
             const span = document.createElement("SPAN");
             span.className = "close";
+            span.className = " listItemButton";
             span.textContent = "\u00D7"; // "×" symbol
-            liElement.appendChild(span);
-
+            
+            
             // Add the list item to the DOM
+            liElement.insertBefore(span, liElement.firstChild);
+            
             listElement.appendChild(liElement);
 
             // Add click event to the close button

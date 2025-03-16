@@ -1,0 +1,80 @@
+:root {
+    --input-width: 200px;  
+  }
+
+.containerPopUp {
+    max-width: 250px; /* Optional: to limit the width */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.headerPopUp {
+    margin-bottom: 10px;
+}
+
+.inputContainer {
+    margin-bottom: 10px;
+}
+
+.buttonsPopUp{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.addDmn, .clrDmn {
+    width:30px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.clrDmn {
+    background-color: #f44336;
+    margin-left: auto;
+}
+
+#monitoredWebsitesList {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap; /* Allows the items to wrap onto the next line if there's not enough space */
+    gap: 10px; /* Optional: Add space between items */
+}
+
+.listItemButton {
+    cursor: pointer;
+    background-color: #e76258;
+    color: white;
+    font-size: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: none;
+    border-radius: 10%;
+    margin-right: 5px;
+    height:100%;
+}
+
+.listItem {
+    display:flex;
+    justify-content: flex-start; 
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    height:100%;
+    align-items: center;
+    word-wrap: break-word;            /* Breaks long words */
+    overflow-wrap: break-word;        /* Breaks words that do not fit the container */
+    white-space: normal;              /* Ensure text breaks as needed */
+    word-break: break-word;           /* Force breaks in long unbreakable words */
+}
+
+
+.inputBox {
+    width:250px;
+}
