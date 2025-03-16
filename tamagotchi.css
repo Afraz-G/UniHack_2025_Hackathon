@@ -66,23 +66,32 @@
 
 /* Dialogue Box Styles */
 .tamagotchi-dialogue {
-    bottom: calc(100% + 10px);
+    /* position: absolute; */
+    bottom: calc(100% + 10px);  /* Places the container below its reference */
     left: 50%;
-    transform: translateX(-50%);
-    padding: 15px;
-    background-color: #ffffff !important;
-    border: 2px solid #000 !important;
+    transform: translateX(-50%);  /* Center it horizontally */
+    padding: 5px;  /* Adjust padding */
+    background-color: #ffffff;
+    border: 2px solid #000;
     border-radius: 1px;
-    z-index: 9999 !important;
-    pointer-events: auto !important;
-    height: 10px;
-    width: 30px;
+    z-index: 9999;
+    pointer-events: auto;
+    height: auto;
+    width: auto;   /* Allow width to adjust based on content */
+    /* min-width: 100px;  Minimum width if the content is too small */
+    max-width: 300px;
+    min-height: 50px;
+    max-height: 500px;
+    word-wrap: break-word;  /* Ensure text wraps properly */
+    padding-bottom: 30px;
+    display:block;
 }
 
 .tamagotchi-dialogue p {
-    margin: 0;
+    padding-top: 20px;
     font-size: 14px;
     text-align: center;
+    display: block;
 }
 
 .tamagotchi-dialogue button {

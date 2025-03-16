@@ -20,7 +20,8 @@ const enableTamagotchi = async () => {
                 getChecklistData();
 
                 // TESTING ONLY: Call the function to start the cycle
-                // cycleTamagotchiClasses();    
+                cycleTamagotchiClasses();  
+                setInterval(cyclePositions, 2000); // Cycle positions every 2 seconds  
                 break;
             }
         }
@@ -79,13 +80,6 @@ function showTamagotchi() {
     if (img) {
         img.style.maxWidth = 'none'; // Override site restrictions
     }
-    // console.log("Computed width:", getComputedStyle(img).width);
-    // console.log("Offset width:", img.offsetWidth);
-    // console.log("Transform:", getComputedStyle(img).transform);
-    // console.log("Zoom:", getComputedStyle(document.body).zoom);
-    // console.log("Font size:", getComputedStyle(document.documentElement).fontSize);
-    // console.log("Box-sizing:", getComputedStyle(img).boxSizing);
-    // console.log("Max-width:", getComputedStyle(img).maxWidth);
 }
 
 function removeTamagotchi() {
@@ -192,28 +186,77 @@ function startDialogueInterval(choices) {
 
 
 // FOR TESTING PURPOSES, TO LOOP THROUGH ANIMATIONS
-// function cycleTamagotchiClasses() {
-//     const classes = ["be_angry", "be_annoyed", "be_sad", "be_neutral", "be_happy"];
-//     let currentIndex = 0;
+function cycleTamagotchiClasses() {
+    const classes = ["be_angry", "be_annoyed", "be_sad", "be_neutral", "be_happy"];
+    let currentIndex = 0;
 
-//     const tamagotchiImg = document.querySelector('.TamagotchiSpriteSheet');
+    const tamagotchiImg = document.querySelector('.TamagotchiSpriteSheet');
 
-//     if (!tamagotchiImg) {
-//         return;
-//     }
+    if (!tamagotchiImg) {
+        return;
+    }
 
-//     // Function to update the class
-//     function updateClass() {
-//         // Remove all mood-related classes
-//         tamagotchiImg.classList.remove(...classes);
+    // Function to update the class
+    function updateClass() {
+        // Remove all mood-related classes
+        tamagotchiImg.classList.remove(...classes);
 
-//         // Add the current class
-//         tamagotchiImg.classList.add(classes[currentIndex]);
+        // Add the current class
+        tamagotchiImg.classList.add(classes[currentIndex]);
 
-//         // Move to the next class
-//         currentIndex = (currentIndex + 1) % classes.length; // Loop back to the first class after the last one
-//     }
+        // Move to the next class
+        currentIndex = (currentIndex + 1) % classes.length; // Loop back to the first class after the last one
+    }
 
-//     // Set an interval to cycle through the classes every 2 seconds (2000ms)
-//     setInterval(updateClass, 2000);
-// }
+    // Set an interval to cycle through the classes every 2 seconds (2000ms)
+    setInterval(updateClass, 2000);
+}
+
+// FOR TESTING ONLY TO MOVE BYTEY AROUND
+
+function moveTamagotchiContainer(top, left) {
+    const container = document.getElementById('TamagotchiContainer');
+    
+    if (container) {
+        container.style.top = `${top}px`;
+        container.style.left = `${left}px`;
+    }
+}
+
+let positionIndex = 0; // Keeps track of the current position index
+
+const positions = [
+    { top: 50,  left: 50  },
+    { top: 150, left: 200 },
+    { top: 250, left: 350 },
+    { top: 350, left: 500 },
+    { top: 450, left: 650 },
+    { top: 550, left: 800 },
+    { top: 650, left: 950 },
+    { top: 750, left: 400 },
+    { top: 850, left: 600 },
+    { top: 950, left: 300 }
+];
+
+// Function to move the container to a specific position
+function moveTamagotchiContainer(top, left) {
+    const container = document.getElementById('TamagotchiContainer');
+    if (container) {
+        container.style.top = `${top}px`;
+        container.style.left = `${left}px`;
+    }
+}
+
+// Function to cycle through positions
+function cyclePositions() {
+    positionIndex = (positionIndex + 1) % positions.length; // Loop back to the first position after the last
+    const position = positions[positionIndex];
+    moveTamagotchiContainer(position.top, position.left);
+}
+
+function cyclePositions() {
+    positionIndex = (positionIndex + 1) % positions.length; // Loop back after the last position
+    const position = positions[positionIndex];
+    moveTamagotchiContainer(position.top, position.left);
+}
+

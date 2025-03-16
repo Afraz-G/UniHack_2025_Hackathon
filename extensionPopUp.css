@@ -41,8 +41,7 @@
     list-style-type: none;
     padding-left: 0;
     display: flex;
-    flex-wrap: wrap; /* Allows the items to wrap onto the next line if there's not enough space */
-    gap: 10px; /* Optional: Add space between items */
+    flex-wrap: wrap; 
 }
 
 .listItemButton {
