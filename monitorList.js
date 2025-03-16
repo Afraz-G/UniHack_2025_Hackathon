@@ -101,7 +101,9 @@ function updateWebsiteListDisplay() {
             const span = document.createElement("SPAN");
             span.className = "close";
             span.textContent = "\u00D7"; // "×" symbol
-            liElement.appendChild(span);
+
+            // Prepend the close button to the start of the list item
+            liElement.insertBefore(span, liElement.firstChild);
 
             // Add the list item to the DOM
             listElement.appendChild(liElement);
