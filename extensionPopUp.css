@@ -67,10 +67,10 @@
     border-radius: 5px;
     height:100%;
     align-items: center;
-    word-wrap: break-word;            /* Breaks long words */
-    overflow-wrap: break-word;        /* Breaks words that do not fit the container */
-    white-space: normal;              /* Ensure text breaks as needed */
-    word-break: break-word;           /* Force breaks in long unbreakable words */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    word-break: break-word;
 }
 
 

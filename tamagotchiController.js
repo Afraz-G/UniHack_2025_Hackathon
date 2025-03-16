@@ -169,7 +169,8 @@ function displayRandomDialogue(choices) {
         console.error('Invalid or empty choices array.');
         return;
     }
-    const texts = choices.map(choice => choice.text)
+    const uncheckedChoices = choices.filter(choices => !choices.checked);
+    const texts = uncheckedChoices.map(choices => choices.text)
     const randomIndex = Math.floor(Math.random() * texts.length);
     const randomChoice = texts[randomIndex];
     console.log(randomChoice)
