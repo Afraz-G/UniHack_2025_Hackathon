@@ -62,7 +62,7 @@ function showTamagotchi() {
     // tamagotchiImg.className += " be_sad";
     // tamagotchiImg.className += " be_neutral";
     // tamagotchiImg.className += " be_happy";
-    tamagotchiImg.src = chrome.runtime.getURL('assets/laptopbyteyv1.png'); // Make sure the path is correct
+    tamagotchiImg.src = chrome.runtime.getURL('assets/laptopbyteyv2.png'); // Make sure the path is correct
     tamagotchiImg.alt = 'tamagotchi';
     console.log("TAMAGOTCHI WIDTH:")
     

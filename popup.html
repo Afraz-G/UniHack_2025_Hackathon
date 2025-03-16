@@ -5,13 +5,22 @@
     <title>YESSSSSSSSSSSSSSSSSSSSSSSS</title>
     <meta charset = "utf-8">
     <script src="monitorList.js"></script>
+    <link rel="stylesheet" href="extensionPopUp.css">
 </head>
-<body>
-    <h3>Websites to Monitor</h3>
-    <input type="text" placeholder="Enter website domain" id="websiteDomain">
-    <span class="addDmn">Add</span>
-    <span class="clrDmn">Clear</span>
-    <ul id="monitoredWebsitesList">
-    </ul>
+<body class="extensionPopUpBody">
+    <div class="containerPopUp">
+        <div class="headerPopUp">
+            <h3>Websites to Monitor</h3>
+        </div>
+        <div class="inputContainer">
+            <input class="inputBox" type="text" placeholder="Enter website domain" id="websiteDomain">
+        </div>
+        <div class="buttonsPopUp">
+            <span class="addDmn">Add</span>
+            <span class="clrDmn">Clear</span>
+        </div>
+        <ul id="monitoredWebsitesList">
+        </ul>
+    </div>
 </body>
 </html>
