@@ -31,7 +31,6 @@
     position: relative;
     top: 80px;
     bottom: 0px;
-    border: 2px solid blue;
 }
 
 .TamagotchiSpriteSheet {
@@ -67,19 +66,17 @@
 
 /* Dialogue Box Styles */
 .tamagotchi-dialogue {
-    visibility: visible;
-    display:block;
-    position: absolute;
     bottom: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%);
-    padding: 50px;
+    padding: 15px;
     background-color: #ffffff !important;
     border: 2px solid #000 !important;
-    border-radius: 10px;
+    border-radius: 1px;
     z-index: 9999 !important;
     pointer-events: auto !important;
-    border: 2px solid red;
+    height: 10px;
+    width: 30px;
 }
 
 .tamagotchi-dialogue p {

@@ -118,7 +118,8 @@ enableTamagotchi();
 
 // Function to create and display the dialogue box
 function createDialogueBox(text) {
-    console.log('Creating dialogue box with text:', text)
+    console.log('Creating dialogue box with text:', text);
+
     const tamagotchi = document.querySelector('.Tamagotchi');
     if (!tamagotchi) {
         console.error('Tamagotchi element not found!');
@@ -135,13 +136,38 @@ function createDialogueBox(text) {
     const closeButton = document.createElement('button');
     closeButton.textContent = 'X';
     closeButton.onclick = function() {
-        tamagotchi.removeChild(dialogueBox);
+        document.body.removeChild(dialogueBox);
     };
     dialogueBox.appendChild(closeButton);
 
-    tamagotchi.appendChild(dialogueBox);
-    console.log('Dialogue box created and appended.')
+    // Append to body instead of Tamagotchi
+    document.body.appendChild(dialogueBox);
+
+    // Position the dialogue box above the Tamagotchi
+    positionDialogueBox(tamagotchi, dialogueBox);
+
+    console.log('Dialogue box created and positioned.');
 }
+
+// Function to position the dialogue box above the Tamagotchi
+function positionDialogueBox(tamagotchi, dialogueBox) {
+    const rect = tamagotchi.getBoundingClientRect();
+
+    dialogueBox.style.position = 'absolute';
+    dialogueBox.style.left = `${rect.left + window.scrollX + rect.width / 2 - dialogueBox.offsetWidth / 2}px`;
+    dialogueBox.style.top = `${rect.top + window.scrollY - dialogueBox.offsetHeight - 10}px`; // 10px margin
+}
+
+
+// Reposition the dialogue box when Tamagotchi moves
+window.addEventListener('resize', () => {
+    const dialogueBox = document.querySelector('.tamagotchi-dialogue');
+    const tamagotchi = document.querySelector('.Tamagotchi');
+    if (dialogueBox && tamagotchi) {
+        positionDialogueBox(tamagotchi, dialogueBox);
+    }
+});
+
 
 // Function to display a random choice from the checklist
 function displayRandomDialogue(choices) {
@@ -161,7 +187,7 @@ function startDialogueInterval(choices) {
     displayRandomDialogue(choices);
     setInterval(() => {
         displayRandomDialogue(choices);
-    }, 30 * 60 * 1000); // 30 minutes in milliseconds
+    }, 5000); // 30 minutes in milliseconds
 }
 
 
