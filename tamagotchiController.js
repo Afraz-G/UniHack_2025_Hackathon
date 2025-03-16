@@ -4,6 +4,8 @@
 // Second Bug: On some websites like the website to look at documentation for manifest.json, for some reason the sprites is croped
 // incorrectly, causing a double (first and next sprite sheet rows).
 
+
+
 const enableTamagotchi = async () => {
     chrome.storage.sync.get("monitorList", (data) => {
         const monitorList = data.monitorList || [];
@@ -15,6 +17,7 @@ const enableTamagotchi = async () => {
                 console.log("This is a BAD website") // Replace with what to do depending on website
                 matchFound = true;
                 showTamagotchi();
+                getChecklistData();
 
                 // TESTING ONLY: Call the function to start the cycle
                 // cycleTamagotchiClasses();    
@@ -24,6 +27,18 @@ const enableTamagotchi = async () => {
         if (!matchFound) {removeTamagotchi();}
     });
     
+}
+
+function getChecklistData(){
+    chrome.storage.local.get(['checklist'], function(result){
+        if (result.checklist) {
+            const data = Object.values(result.checklist);
+            console.log('Checklist data received:', data);
+            startDialogueInterval(data);
+        } else {
+            console.log('No checklist data found in chrome.storage.local');
+        }
+    });
 }
 
 function showTamagotchi() {
@@ -101,6 +116,79 @@ function updateTamagotchiImageClass(newClass) {
 
 enableTamagotchi();
 
+// Function to create and display the dialogue box
+function createDialogueBox(text) {
+    console.log('Creating dialogue box with text:', text);
+
+    const tamagotchi = document.querySelector('.Tamagotchi');
+    if (!tamagotchi) {
+        console.error('Tamagotchi element not found!');
+        return;
+    }
+
+    const dialogueBox = document.createElement('div');
+    dialogueBox.className = 'tamagotchi-dialogue';
+
+    const dialogueText = document.createElement('p');
+    dialogueText.textContent = text;
+    dialogueBox.appendChild(dialogueText);
+
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'X';
+    closeButton.onclick = function() {
+        document.body.removeChild(dialogueBox);
+    };
+    dialogueBox.appendChild(closeButton);
+
+    // Append to body instead of Tamagotchi
+    document.body.appendChild(dialogueBox);
+
+    // Position the dialogue box above the Tamagotchi
+    positionDialogueBox(tamagotchi, dialogueBox);
+
+    console.log('Dialogue box created and positioned.');
+}
+
+// Function to position the dialogue box above the Tamagotchi
+function positionDialogueBox(tamagotchi, dialogueBox) {
+    const rect = tamagotchi.getBoundingClientRect();
+
+    dialogueBox.style.position = 'absolute';
+    dialogueBox.style.left = `${rect.left + window.scrollX + rect.width / 2 - dialogueBox.offsetWidth / 2}px`;
+    dialogueBox.style.top = `${rect.top + window.scrollY - dialogueBox.offsetHeight - 10}px`; // 10px margin
+}
+
+
+// Reposition the dialogue box when Tamagotchi moves
+window.addEventListener('resize', () => {
+    const dialogueBox = document.querySelector('.tamagotchi-dialogue');
+    const tamagotchi = document.querySelector('.Tamagotchi');
+    if (dialogueBox && tamagotchi) {
+        positionDialogueBox(tamagotchi, dialogueBox);
+    }
+});
+
+
+// Function to display a random choice from the checklist
+function displayRandomDialogue(choices) {
+    if (!Array.isArray(choices) || choices.length === 0) {
+        console.error('Invalid or empty choices array.');
+        return;
+    }
+    const texts = choices.map(choice => choice.text)
+    const randomIndex = Math.floor(Math.random() * texts.length);
+    const randomChoice = texts[randomIndex];
+    console.log(randomChoice)
+    createDialogueBox(randomChoice);
+}
+
+// Function to start the 30-minute interval
+function startDialogueInterval(choices) {
+    displayRandomDialogue(choices);
+    setInterval(() => {
+        displayRandomDialogue(choices);
+    }, 5000); // 30 minutes in milliseconds
+}
 
 
 // FOR TESTING PURPOSES, TO LOOP THROUGH ANIMATIONS

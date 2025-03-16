@@ -104,8 +104,7 @@ function updateWebsiteListDisplay() {
             span.className = "close";
             span.className = " listItemButton";
             span.textContent = "\u00D7"; // "×" symbol
-            
-            
+
             // Add the list item to the DOM
             liElement.insertBefore(span, liElement.firstChild);
             
